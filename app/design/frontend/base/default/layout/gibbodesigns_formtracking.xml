@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout>
+    <contacts_index_index>
+        <reference name="content">
+            <block after="contactForm" type="gibbodesigns/tracking" 
+                   name="gibbodesigns_formtracking_track" 
+                   template="gibbodesigns_formtracking/track.phtml" />
+        </reference>
+    </contacts_index_index>
+</layout>

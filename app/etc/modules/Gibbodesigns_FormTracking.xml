@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Gibbodesigns_FormTracking>
+        <active>true</active>
+        <codePool>community</codePool>
+        </Gibbodesigns_FormTracking>
+    </modules>
+</config>

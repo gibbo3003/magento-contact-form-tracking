@@ -1,0 +1,18 @@
+<?php
+$_helper = $this->helper('gibbodesigns');
+$_eventString = $_helper->getContactFormEventString();
+?>
+<?php if (!$this->helper('core/cookie')->isUserNotAllowSaveCookie()): ?>
+<!-- BEGIN CONTACT FORM TRACKING CODE -->
+<script type="text/javascript">
+//<![CDATA[
+    new Event.observe('contactForm', 'submit', function(e){
+        e.stop();
+        if (contactForm.validator.validate()) {
+            <?php echo $this->_getContactFormTrackingCode($_eventString) ?>
+        }
+    });
+//]]>
+</script>
+<!-- END CONTACT FORM TRACKING CODE -->
+<?php endif; ?>
