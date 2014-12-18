@@ -60,6 +60,7 @@
                             <label>Value</label>
                             <frontend_type>text</frontend_type>
                             <sort_order>14</sort_order>
+                            <backend_model>gibbodesigns/system_config_validate_num</backend_model>
                             <show_in_default>1</show_in_default>
                             <show_in_website>1</show_in_website>
                             <show_in_store>1</show_in_store>
