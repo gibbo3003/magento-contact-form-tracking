@@ -1,6 +1,6 @@
 <?php
 /**
- * GoogleAnalitics Page Block
+ * GoogleAnalytics Page Block
  *
  * @category   Gibbodesign
  * @package    Gibbodesigns_FormTracking
@@ -31,19 +31,24 @@ class Gibbodesigns_FormTracking_Block_Tracking extends Mage_Core_Block_Template
      */
     protected function _getContactFormTrackingCodeUniversal($eventstring)
     {
-        return "ga('send', 'event',
-        {
+        
+        $output = "ga('send', 'event',{
             'eventCategory' : '".$eventstring['category']."',
-            'eventAction'   : '".$eventstring['action']."',
-            'eventLabel'    : '".$eventstring['label']."',
-            'eventValue'    : '".$eventstring['value']."',
+            'eventAction'   : '".$eventstring['action']."',";
+        $output .= ($eventstring['label'] != '') ? "
+            'eventLabel'    : '".$eventstring['label']."'," : ''; //only show eventLabel when it exists
+        $output .= (is_numeric($eventstring['value'])) ? "
+            'eventValue'    : ".$eventstring['value']."," : ''; //only show eventValue when it exists
+        $output .= "
             'hitCallback'   : function () {
                 contactForm.submit();
             },
             'hitCallbackFail' : function () {
-                contactForm.submit();   
+                contactForm.submit();
             }
         });\r\n";
+        
+        return $output;
     }
     
     /**
@@ -53,9 +58,13 @@ class Gibbodesigns_FormTracking_Block_Tracking extends Mage_Core_Block_Template
      */
     protected function _getPageTrackingCodeAnalytics($eventstring)
     {
-        return "_gaq.push(['_trackEvent','".$eventstring['category']."','".$eventstring['action']."','".$eventstring['label']."','".$eventstring['value']."']);\r\n
+        $output = "_gaq.push(['_trackEvent','".$eventstring['category']."','".$eventstring['action']."'";
+        $output .= ($eventstring['label'] != '') ? ",'".$eventstring['label']."'" : ''; //only show eventLabel when it exists
+        $output .= (is_numeric($eventstring['value'])) ? ",'".$eventstring['value']."'" : ''; //only show eventValue when it exists
+        $output .= "]);\r\n
         _gaq.push(function() { contactForm.submit(); });\r\n";
-    
+        
+        return $output;
     }
 
     /**
