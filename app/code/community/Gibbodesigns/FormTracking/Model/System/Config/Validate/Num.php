@@ -8,11 +8,6 @@
 
 class Gibbodesigns_FormTracking_Model_System_Config_Validate_Num extends Mage_Core_Model_Config_Data
 {
-    /**
-     * Xml config path to contact form tracking active value
-     *
-     */
-    const XML_PATH_ACTIVE = 'google/formtracking/value';
     
     /**
      * Check if field is numeric if a value exists

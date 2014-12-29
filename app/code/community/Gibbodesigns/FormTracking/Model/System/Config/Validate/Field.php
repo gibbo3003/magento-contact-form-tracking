@@ -8,11 +8,6 @@
 
 class Gibbodesigns_FormTracking_Model_System_Config_Validate_Field extends Mage_Core_Model_Config_Data
 {
-    /**
-     * Xml config path to contact form tracking active value
-     *
-     */
-    const XML_PATH_ACTIVE = 'google/formtracking/active';
     
     /**
      * Check if field contains anything
@@ -28,7 +23,7 @@ class Gibbodesigns_FormTracking_Model_System_Config_Validate_Field extends Mage_
 
         if ($value == '' && $isActive) {
             Mage::throwException(
-                Mage::helper('customer')->__('The field "'.$label.'" cannot be blank when Contact Form Tracking is enabled.')
+                Mage::helper('customer')->__('The field "'.$label.'" cannot be blank when Tracking is enabled.')
             );
         }
         return $this;

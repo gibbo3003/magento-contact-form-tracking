@@ -1,0 +1,47 @@
+<?php
+$_helper = $this->helper('gibbodesigns');
+$_billingEventString = $_helper->getBillingFormEventString();
+$_shippingEventString = $_helper->getShippingFormEventString();
+$_shippingmethodEventString = $_helper->getShippingMethodFormEventString();
+$_paymentmethodEventString = $_helper->getPaymentMethodFormEventString();
+?>
+<?php if (!$this->helper('core/cookie')->isUserNotAllowSaveCookie()): ?>
+<!-- BEGIN ONEPAGE CHECKOUT FORM TRACKING -->
+<script type="text/javascript">
+//<![CDATA[
+    Ajax.Responders.register({
+      onComplete: function(e) {
+        var splitURL = e['url'].split('/');
+        var onepageMethod = splitURL[5];
+        switch(onepageMethod) {
+            case "saveBilling":
+                <?php
+                if($_helper->isBillingFormTrackingAvailable()):
+                    echo $this->_getOnePageTrackingCode($_billingEventString);
+                endif; ?>
+            break;
+            case "saveShipping":
+                <?php
+                if($_helper->isShippingFormTrackingAvailable()):
+                    echo $this->_getOnePageTrackingCode($_shippingEventString);
+                endif; ?>
+            break;
+            case "saveShippingMethod":
+                <?php
+                if($_helper->isShippingMethodFormTrackingAvailable()):
+                    echo $this->_getOnePageTrackingCode($_shippingmethodEventString);
+                endif; ?>
+            break;
+            case "savePayment":
+                <?php
+                if($_helper->isPaymentMethodFormTrackingAvailable()):
+                    echo $this->_getOnePageTrackingCode($_paymentmethodEventString);
+                endif; ?>
+            break;
+        }
+      }
+    });
+//]]>
+</script>
+<!-- END ONEPAGE CHECKOUT FORM TRACKING -->
+<?php endif; ?>
